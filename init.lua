@@ -1,4 +1,4 @@
---[[
+[[
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -121,7 +121,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 --
---  To check the current status of your plugins, run --  :Lazy
+--  To check the current status of your plugins, run  :Lazy
 --  To update plugins you can run  :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
