@@ -330,6 +330,7 @@ require('lazy').setup({
 
       -- Enable language servers
       local servers = {
+        tsserver = {},
         pyright = {},
         rust_analyzer = {},
         lua_ls = {
