@@ -28,6 +28,7 @@ vim.g.maplocalleader = '\\'
 vim.g.have_nerd_font = false
 
 -- [[ Setting options ]]
+vim.opt.ruler = true
 
 -- Make line numbers default
 vim.opt.number = true
@@ -336,9 +337,7 @@ require('lazy').setup({
         pyright = {},
         rust_analyzer = {},
         lua_ls = {
-          settings = { Lua = { completion = { callSnippet = 'Replace', },
-            },
-          },
+          settings = { Lua = { completion = { callSnippet = 'Replace' } } },
         },
       }
 
@@ -600,10 +599,12 @@ require('lazy').setup({
     end,
   },
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
   },
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
