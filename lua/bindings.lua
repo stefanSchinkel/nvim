@@ -26,4 +26,4 @@ vim.keymap.set('n', '<space>', 'za', { desc = 'Fold at current line' })
 vim.keymap.set('n', '<C-t>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' })
 
 -- code runner
-vim.keymap.set('n', '<C-b>', ':RunFile<CR>', { desc = 'Run file', noremap = true, silent = false })
+vim.keymap.set('n', '<leader>b', ':RunFile<CR>', { desc = 'Run file', noremap = true, silent = false })
