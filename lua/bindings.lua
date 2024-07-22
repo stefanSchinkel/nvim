@@ -23,4 +23,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<space>', 'za', { desc = 'Fold at current line' })
 
 -- neotree toogle
-vim.keymap.set('n', '<C-t>','<Cmd>Neotree toggle<CR>' , { desc = 'Toggle Neotree' })
+vim.keymap.set('n', '<C-t>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' })
+
+-- code runner
+vim.keymap.set('n', '<C-b>', ':RunFile<CR>', { desc = 'Run file', noremap = true, silent = false })
