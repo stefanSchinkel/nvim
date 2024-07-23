@@ -609,6 +609,8 @@ require('lazy').setup({
 
   -- command runnter
   { 'CRAG666/code_runner.nvim', config = true, opts = { mode = 'float', float = { border = 'rounded' } } },
+  -- trim on save
+  { 'cappyzawa/trim.nvim', opts = {} },
   -- { 'CRAG666/betterTerm.nvim', opts = { position = 'float', size = 15 } },
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
