@@ -332,7 +332,8 @@ require('lazy').setup({
       local servers = {
         yamlls = {},
         ansiblels = {},
-        tsserver = {},
+        -- tsserver = {},
+        ts_ls = {},
         pyright = {},
         rust_analyzer = {},
         lua_ls = {
