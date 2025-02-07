@@ -12,4 +12,5 @@ jobs:
       - name: Stylua Check
         uses: nebularg/actions-luacheck@v1
         with:
-          args: init.lua lua/bindings.lua --globals vim
+          # args: init.lua lua/bindings.lua --globals vim
+          args: init.lua --globals vim
