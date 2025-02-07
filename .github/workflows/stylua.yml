@@ -11,3 +11,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Stylua Check
         uses: nebularg/actions-luacheck@v1
+        with:
+          args: --globals vim
