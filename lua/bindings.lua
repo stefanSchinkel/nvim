@@ -30,3 +30,7 @@ vim.keymap.set('n', '<C-t>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree
 
 -- code runner
 vim.keymap.set('n', '<leader>b', ':RunFile<CR>', { desc = 'Run file', noremap = true, silent = false })
+
+-- FTerm
+vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<leader>t', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
