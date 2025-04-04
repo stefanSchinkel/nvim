@@ -29,7 +29,13 @@ vim.keymap.set('n', '<space>', 'za', { desc = 'Fold at current line' })
 vim.keymap.set('n', '<C-t>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' })
 
 -- code runner
-vim.keymap.set('n', '<leader>b', ':w<CR> :RunFile<CR>', { desc = 'Run file', noremap = true, silent = false })
+-- vim.keymap.set('n', '<leader>b', ':w<CR> :RunFile<CR>', { desc = 'Run file', noremap = true, silent = false })
+vim.keymap.set(
+  'n',
+  '<leader>b',
+  ':w<CR><CMD>lua require("FTerm").run({"python", vim.api.nvim_buf_get_name(0)})<CR>',
+  { desc = 'Run python in FTerm', noremap = true, silent = true }
+)
 
 -- FTerm
 vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
