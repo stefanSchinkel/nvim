@@ -405,6 +405,11 @@ require('lazy').setup({
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
       },
+      formatters = {
+        black = {
+          prepend_args = { '--line-length', '79' },
+        },
+      },
     },
   },
 
