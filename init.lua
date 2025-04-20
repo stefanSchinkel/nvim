@@ -74,7 +74,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldnestmax = 10
 vim.opt.foldlevelstart = 10
 vim.opt.foldlevel = 2
