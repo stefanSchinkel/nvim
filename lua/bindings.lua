@@ -7,6 +7,10 @@
 --vim.keymap.set('n', '<up>', '<cmd>echo "use k to move!!"<cr>')
 --vim.keymap.set('n', '<down>', '<cmd>echo "use j to move!!"<cr>')
 
+-- bind <CTRL>+"/" to comment/uncomment in visual and normal
+-- NOTE: "_" maps to "/" in vim
+vim.keymap.set('n', '<C-_>', 'gcc', { remap = true })
+vim.keymap.set('v', '<C-_>', 'gcc', { remap = true })
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -38,5 +42,5 @@ vim.keymap.set(
 )
 
 -- FTerm
-vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>', { desc = 'Toogle Terminal' })
 vim.keymap.set('t', '<leader>t', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
