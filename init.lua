@@ -69,7 +69,11 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
-
+vim.opt.guicursor = {
+  'n-v-c:block-Cursor/lCursor', -- Block cursor in normal, visual, and command modes
+  'i-r-cr-o:hor20-Cursor/lCursor', -- Horizontal line cursor in replace, command-line replace, and operator-pending modes
+  'a:blinkwait700-blinkoff400-blinkon250', -- Global blinking settings for all modes
+}
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
@@ -132,6 +136,10 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  {
+    'tadaa/vimade',
+    opts = { recipe = { 'default' }, fadelevel = 0.6, enablefocusfading = true },
+  },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
@@ -332,13 +340,19 @@ require('lazy').setup({
 
       -- Enable language servers
       local servers = {
-        yamlls = {},
+        yamlls = {
+          settings = {
+            yaml = {
+              schemas = { kubernetes = 'globPattern' },
+            },
+          },
+        },
         ansiblels = {},
         ts_ls = tsserver,
         pyright = {},
         rust_analyzer = {},
         lua_ls = {
-          settings = { Lua = { completion = { callSnippet = 'Replace' } } },
+          settings = { Lua = { completion = { callSnippet = 'Replace' }, diagnostics = { disable = { 'missing-fields' } } } },
         },
       }
 
@@ -399,7 +413,14 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
+        -- python = { 'isort', 'black' },
+        python = {
+          'ruff_fix',
+          -- To run the Ruff formatter.
+          'ruff_format',
+          -- To organize the imports.
+          'ruff_organize_imports',
+        },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
