@@ -70,8 +70,10 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 vim.opt.guicursor = {
-  'n-v-c:block-Cursor/lCursor', -- Block cursor in normal, visual, and command modes
-  'i-r-cr-o:hor20-Cursor/lCursor', -- Horizontal line cursor in replace, command-line replace, and operator-pending modes
+  -- Horizontal line cursor in replace, command-line replace, and operator-pending modes
+  'n-v-c:block-Cursor/lCursor',
+  -- Block cursor in normal, visual, and command modes
+  'i-r-cr-o:hor20-Cursor/lCursor',
   'a:blinkwait700-blinkoff400-blinkon250', -- Global blinking settings for all modes
 }
 -- Minimal number of screen lines to keep above and below the cursor.
@@ -352,7 +354,10 @@ require('lazy').setup({
         pyright = {},
         rust_analyzer = {},
         lua_ls = {
-          settings = { Lua = { completion = { callSnippet = 'Replace' }, diagnostics = { disable = { 'missing-fields' } } } },
+          settings = { Lua = {
+            completion = { callSnippet = 'Replace' },
+            diagnostics = { disable = { 'missing-fields' } },
+          } },
         },
       }
 
