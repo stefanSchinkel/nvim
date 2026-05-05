@@ -352,7 +352,25 @@ require('lazy').setup({
         ansiblels = {},
         ts_ls = tsserver,
         pyright = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          -- Turn some heavylifiting
+          procMacro = { enable = false },
+          cargo = {
+            runBuildScripts = false,
+            loadOutDirsFromCheck = false,
+            allFeatures = false,
+            noDefaultFeatures = false,
+          },
+
+          completion = {
+            autoimport = { enable = false },
+          },
+          files = {
+            excludeDirs = { 'target', '.git', 'node_modules' },
+            watcherExclude = { 'target/**', '.git/**' },
+            watcher = 'client', -- let Neovim’s own watcher do the job
+          },
+        },
         lua_ls = {
           settings = { Lua = {
             completion = { callSnippet = 'Replace' },
