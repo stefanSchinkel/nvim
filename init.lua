@@ -636,6 +636,8 @@ require('lazy').setup({
       require('nvim-treesitter').install {
         'gitcommit',
         'bash',
+        'angular',
+        'just',
         'c',
         'html',
         'lua',
