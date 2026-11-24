@@ -115,14 +115,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.hl_op { timeout = 200 }
+    -- vim.hl.on_yank()
   end,
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
@@ -339,11 +340,20 @@ require('lazy').setup({
         end,
       })
 
+      -- vim.api.nvim_create_autocmd('LspDetach', {
+      --   group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+      --   callback = function(event)
+      --     vim.lsp.buf.clear_references()
+      --     vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event.buf }
+      --   end,
+      -- })
       vim.api.nvim_create_autocmd('LspDetach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
         callback = function(event)
           vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event.buf }
+          -- The highlight group only exists if a server with documentHighlight
+          -- support has attached at some point, so guard against it being absent.
+          pcall(vim.api.nvim_clear_autocmds, { group = 'kickstart-lsp-highlight', buffer = event.buf })
         end,
       })
 
