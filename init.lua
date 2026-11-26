@@ -91,6 +91,9 @@ vim.opt.foldlevel = 2
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.opt.title = true
+vim.opt.titlestring = 'nvim %t'
+
 --[[
  :NOTE: majority of bindings got to ./lua/bindings.lua
 --]]
@@ -137,10 +140,27 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically {
+
+  --  in theory
+  -- { --this allow CTRL-hjkl move in vim splits when in zellij
+  --   'mrjones2014/smart-splits.nvim',
+  --   lazy = false,
+  --   config = function()
+  --     local s = require 'smart-splits'
+  --     s.setup {
+  --       multiplexer_integration = 'zellij',
+  --       zellij_move_focus_or_tab = true,
+  --       at_edge = 'stop', -- don't wrap inside vim; let zellij take over
+  --     }
+  --     vim.keymap.set('n', '<C-h>', s.move_cursor_left)
+  --     vim.keymap.set('n', '<C-j>', s.move_cursor_down)
+  --     vim.keymap.set('n', '<C-k>', s.move_cursor_up)
+  --     vim.keymap.set('n', '<C-l>', s.move_cursor_right)
+  --   end,
+  -- },
 
   -- install without yarn or npm
-
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -371,7 +391,7 @@ require('lazy').setup({
         },
         ansiblels = {},
         ts_ls = tsserver,
-        pyright = {},
+        ruff = {},
         rust_analyzer = {
           -- Turn some heavylifiting
           procMacro = { enable = false },
@@ -682,22 +702,23 @@ require('lazy').setup({
   { 'cappyzawa/trim.nvim', opts = {} },
 
   require 'kickstart.plugins.neo-tree',
-  {
-    'alexghergh/nvim-tmux-navigation',
-    config = function()
-      local nvim_tmux_nav = require 'nvim-tmux-navigation'
-      nvim_tmux_nav.setup {
-        disable_when_zoomed = true, -- defaults to false
-      }
-
-      vim.keymap.set('n', '<C-h>', nvim_tmux_nav.NvimTmuxNavigateLeft)
-      vim.keymap.set('n', '<C-j>', nvim_tmux_nav.NvimTmuxNavigateDown)
-      vim.keymap.set('n', '<C-k>', nvim_tmux_nav.NvimTmuxNavigateUp)
-      vim.keymap.set('n', '<C-l>', nvim_tmux_nav.NvimTmuxNavigateRight)
-      vim.keymap.set('n', '<C-\\>', nvim_tmux_nav.NvimTmuxNavigateLastActive)
-      vim.keymap.set('n', '<C-Space>', nvim_tmux_nav.NvimTmuxNavigateNext)
-    end,
-  },
+  require 'kickstart.plugins.smart-splits',
+  -- {
+  --   'alexghergh/nvim-tmux-navigation',
+  --   config = function()
+  --     local nvim_tmux_nav = require 'nvim-tmux-navigation'
+  --     nvim_tmux_nav.setup {
+  --       disable_when_zoomed = true, -- defaults to false
+  --     }
+  --
+  --     vim.keymap.set('n', '<C-h>', nvim_tmux_nav.NvimTmuxNavigateLeft)
+  --     vim.keymap.set('n', '<C-j>', nvim_tmux_nav.NvimTmuxNavigateDown)
+  --     vim.keymap.set('n', '<C-k>', nvim_tmux_nav.NvimTmuxNavigateUp)
+  --     vim.keymap.set('n', '<C-l>', nvim_tmux_nav.NvimTmuxNavigateRight)
+  --     vim.keymap.set('n', '<C-\\>', nvim_tmux_nav.NvimTmuxNavigateLastActive)
+  --     vim.keymap.set('n', '<C-Space>', nvim_tmux_nav.NvimTmuxNavigateNext)
+  --   end,
+  -- },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
